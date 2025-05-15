@@ -51,11 +51,17 @@ public class ProfesorService {
     public ProfesorDto obtenerProfesor (String correo){
         try {
             ProfesorEntity profesor = profesorRepository.findByCorreo(correo);
+            EstadoCuenta estado = profesor.getEstadoCuenta();
             if (profesor != null){
-                ProfesorDto profe = new ProfesorDto(profesor.getNombreUsuario(),profesor.getCorreo()
-                ,profesor.getTelefono(),profesor.getEstadoCuenta(),profesor.getMaterias(),
+                if(estado != EstadoCuenta.ACTIVO){
+                    System.out.println("el profesor esta fuera de servicio");
+                    return null;
+   
+                }ProfesorDto profe = new ProfesorDto(profesor.getNombreUsuario(),profesor.getCorreo()
+                ,profesor.getTelefono(),profesor.getEstadoCuenta(),
                 profesor.getAñosDeExperiencia());
-                return profe;
+                return profe; 
+
             }
             return null;
             
