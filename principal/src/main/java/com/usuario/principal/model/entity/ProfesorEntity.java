@@ -9,6 +9,8 @@ import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -29,6 +31,7 @@ public class ProfesorEntity{
     private String correo;
     private String telefono;
     private LocalDate fechaRegistro;
+    @Enumerated(EnumType.STRING)
     private EstadoCuenta estadoCuenta;
 
     @ElementCollection
