@@ -42,8 +42,8 @@ public class ProfesorController {
         
     }
 
-    @GetMapping("/{id}/materias")
-    public List<Long> obtenerMaterias(@PathVariable int id) {
-        return profesorService.obtenerMaterias(id);
-    }
+    //@GetMapping("/{id}/materias")
+    //public List<Long> obtenerMaterias(@PathVariable int id) {
+    //    return profesorService.obtenerMaterias(id);
+    //}
 }

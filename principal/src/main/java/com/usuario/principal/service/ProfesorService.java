@@ -70,17 +70,60 @@ public class ProfesorService {
         }
     }
 
-    public List<Long> obtenerMaterias(int profeId) {
-        try {
-            Optional<ProfesorEntity> profesorOptional = profesorRepository.findById(profeId);
-            if (profesorOptional.isPresent()) {
-                ProfesorEntity profesor = profesorOptional.get();
-                return profesor.getMaterias();
-            }
-            return Collections.emptyList();
+    //public List<Long> obtenerMaterias(int profeId) {
+    //    try {
+    //        Optional<ProfesorEntity> profesorOptional = profesorRepository.findById(profeId);
+    //        if (profesorOptional.isPresent()) {
+    //            ProfesorEntity profesor = profesorOptional.get();
+    //            return profesor.getMaterias();
+    //        }
+    //        return Collections.emptyList();
             
+    //    } catch (Exception e) {
+    //        return Collections.emptyList();
+    //    }
+    //}
+
+    public String cambiarNombreProfe (String nuevoNombre , int profeId){
+        try {
+            boolean estado = profesorRepository.existsById(profeId);
+            if(estado){
+               ProfesorEntity profe= profesorRepository.findById(profeId);
+               String nombreViejo = profe.getNombreUsuario();
+               profe.setNombreUsuario(nuevoNombre);
+               return "el nombre de usuario del profesor "+nombreViejo+" fue cambiado a "+profe.getNombreUsuario();
+            }return"el id "+ profeId+" no se a encontrado";     
         } catch (Exception e) {
-            return Collections.emptyList();
+            e.printStackTrace();
+            return "Error: Hubo un problema al cambiar el nombre del profesor " + e.getMessage();
+        }
+    }
+
+    public String cambiarNumeroProfe (String nuevoNumero , int profeId){
+        try {
+            boolean estado = profesorRepository.existsById(profeId);
+            if(estado){
+               ProfesorEntity profe= profesorRepository.findById(profeId);
+               profe.setTelefono(nuevoNumero);
+               return "el telefono del profesor "+profe.getNombreUsuario()+" fue cambiado a "+profe.getTelefono();
+            }return"el id "+profeId+" no se a encontrado";     
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Error: Hubo un problema al cambiar el telefono del profesor " + e.getMessage();
+        }
+    }
+
+    public String cambiarEstadoCuenta(int profeId , EstadoCuenta nuevoEstadoCuenta){
+        try {
+            boolean estado = profesorRepository.existsById(profeId);
+            if(estado){
+               ProfesorEntity profe= profesorRepository.findById(profeId);
+               profe.setEstadoCuenta(nuevoEstadoCuenta);
+               return "el estado de la cuenta del profesor "+profe.getNombreUsuario()+" fue cambiado a "+profe.getEstadoCuenta();
+            }return"el id "+profeId+" no se a encontrado";     
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Error: Hubo un problema al cambiar el Estado de cuenta del profesor " + e.getMessage();
         }
     }
 

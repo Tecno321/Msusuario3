@@ -39,8 +39,8 @@ public class AlumnoController {
         return ResponseEntity.notFound().build();     
     }
 
-    @GetMapping("/{id}/materias")
-    public List<Long> obtenerMaterias(@PathVariable int id) {
-        return alumnoService.obtenerMaterias(id);
-    }      
+    //@GetMapping("/{id}/materias")
+    //public List<Long> obtenerMaterias(@PathVariable int id) {
+    //    return alumnoService.obtenerMaterias(id);
+    //}      
 }
