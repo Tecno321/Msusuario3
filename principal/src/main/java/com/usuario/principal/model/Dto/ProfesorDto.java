@@ -12,15 +12,13 @@ import lombok.NoArgsConstructor;
 public class ProfesorDto {
     private String nombreUsuario;
     private String correo;
-    private String telefono;
     private EstadoCuenta estadoCuenta;
     private int añosDeExperiencia;
     
-    public ProfesorDto( String nombreUsuario, String correo,String telefono,
+    public ProfesorDto( String nombreUsuario, String correo,
                         EstadoCuenta estadoCuenta,int añosExperiencia) {
         this.nombreUsuario = nombreUsuario;
         this.correo = correo;
-        this.telefono = telefono;
         this.estadoCuenta = estadoCuenta;
         this.añosDeExperiencia = añosExperiencia;
     }

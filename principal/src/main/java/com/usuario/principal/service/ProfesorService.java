@@ -58,7 +58,7 @@ public class ProfesorService {
                     return null;
    
                 }ProfesorDto profe = new ProfesorDto(profesor.getNombreUsuario(),profesor.getCorreo()
-                ,profesor.getTelefono(),profesor.getEstadoCuenta(),
+                ,profesor.getEstadoCuenta(),
                 profesor.getAñosDeExperiencia());
                 return profe; 
 

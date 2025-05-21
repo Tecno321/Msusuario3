@@ -53,7 +53,7 @@ public class AlumnoService {
             AlumnoEntity alumno = alumnoRepository.findByCorreo(correo);
             if (alumno != null){
                 AlumnoDto alum = new AlumnoDto(alumno.getNombreUsuario()
-                ,alumno.getCorreo(),alumno.getTelefono(),
+                ,alumno.getCorreo(),
                 alumno.getEstadoCuenta(),alumno.getCursosInscritos());
                 return alum;
             }
