@@ -1,9 +1,9 @@
 package com.usuario.principal.service;
 
 import java.time.LocalDate;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+//import java.util.Collections;
+//import java.util.List;
+//import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -69,6 +69,30 @@ public class ProfesorService {
             return null;
         }
     }
+
+    public ProfesorDto obtenerProfesor2 (int profeId){
+        try {
+            ProfesorEntity profesor = profesorRepository.findById(profeId);
+            EstadoCuenta estado = profesor.getEstadoCuenta();
+            if (profesor != null){
+                if(estado != EstadoCuenta.ACTIVO){
+                    System.out.println("el profesor esta fuera de servicio");
+                    return null;
+   
+                }ProfesorDto profe = new ProfesorDto(profesor.getNombreUsuario(),profesor.getCorreo()
+                ,profesor.getEstadoCuenta(),
+                profesor.getAñosDeExperiencia());
+                return profe; 
+
+            }
+            return null;
+            
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+
 
     //public List<Long> obtenerMaterias(int profeId) {
     //    try {

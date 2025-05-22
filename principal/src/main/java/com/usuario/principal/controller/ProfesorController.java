@@ -39,9 +39,15 @@ public class ProfesorController {
         if(profesorService.obtenerProfesor(correo) != null){
             return ResponseEntity.ok(profesorService.obtenerProfesor(correo));
         }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.notFound().build();       
+    }
 
-        
+    @GetMapping("/obtenerProfe/{id}")
+    public ResponseEntity<ProfesorDto> obtenerProfesor(@PathVariable int profeId) {
+        if(profesorService.obtenerProfesor2(profeId) != null){
+            return ResponseEntity.ok(profesorService.obtenerProfesor2(profeId));
+        }
+        return ResponseEntity.notFound().build();       
     }
 
     //@GetMapping("/{id}/materias")
