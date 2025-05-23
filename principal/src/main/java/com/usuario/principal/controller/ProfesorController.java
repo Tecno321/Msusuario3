@@ -56,7 +56,7 @@ public class ProfesorController {
     //}
 
     @PutMapping("/cambiarNombre/{nombre}/{id}")
-    public ResponseEntity<String> cambiarNombre(@RequestBody String nombre ,int id){
+    public ResponseEntity<String> cambiarNombre(@PathVariable String nombre ,@PathVariable int id){
         String resultado = profesorService.cambiarNombreProfe(nombre, id);
         if (resultado.startsWith("Error")) {
             return ResponseEntity.status(400).body(resultado);
@@ -65,7 +65,7 @@ public class ProfesorController {
     }
 
     @PutMapping("/cambiarTelefono/{telefono}/{id}")
-    public ResponseEntity<String> cambiarTelefono(@RequestBody String telefono ,int id){
+    public ResponseEntity<String> cambiarTelefono(@PathVariable String telefono ,@PathVariable int id){
         String resultado = profesorService.cambiarNumeroProfe(telefono, id);
         if (resultado.startsWith("Error")) {
             return ResponseEntity.status(400).body(resultado);
@@ -74,7 +74,7 @@ public class ProfesorController {
     } 
     
     @PutMapping("/cambiarEstadoCuenta/{estado}/{id}")
-    public ResponseEntity<String> cambiarEstado(@RequestBody EstadoCuenta estado ,int id){
+    public ResponseEntity<String> cambiarEstado(@PathVariable EstadoCuenta estado ,@PathVariable int id){
         String resultado = profesorService.cambiarEstadoCuenta(id, estado);
         if (resultado.startsWith("Error")) {
             return ResponseEntity.status(400).body(resultado);

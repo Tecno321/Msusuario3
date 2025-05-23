@@ -115,6 +115,7 @@ public class ProfesorService {
                ProfesorEntity profe= profesorRepository.findById(profeId);
                String nombreViejo = profe.getNombreUsuario();
                profe.setNombreUsuario(nuevoNombre);
+               profesorRepository.save(profe);
                return "el nombre de usuario del profesor "+nombreViejo+" fue cambiado a "+profe.getNombreUsuario();
             }return"el id "+ profeId+" no se a encontrado";     
         } catch (Exception e) {
@@ -129,6 +130,7 @@ public class ProfesorService {
             if(estado){
                ProfesorEntity profe= profesorRepository.findById(profeId);
                profe.setTelefono(nuevoNumero);
+               profesorRepository.save(profe);
                return "el telefono del profesor "+profe.getNombreUsuario()+" fue cambiado a "+profe.getTelefono();
             }return"el id "+profeId+" no se a encontrado";     
         } catch (Exception e) {
@@ -143,6 +145,7 @@ public class ProfesorService {
             if(estado){
                ProfesorEntity profe= profesorRepository.findById(profeId);
                profe.setEstadoCuenta(nuevoEstadoCuenta);
+               profesorRepository.save(profe);
                return "el estado de la cuenta del profesor "+profe.getNombreUsuario()+" fue cambiado a "+profe.getEstadoCuenta();
             }return"el id "+profeId+" no se a encontrado";     
         } catch (Exception e) {
@@ -150,6 +153,4 @@ public class ProfesorService {
             return "Error: Hubo un problema al cambiar el Estado de cuenta del profesor " + e.getMessage();
         }
     }
-
-   
 }

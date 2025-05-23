@@ -85,6 +85,7 @@ public class AlumnoService {
                AlumnoEntity alumno= alumnoRepository.findById(alumnoId);
                String nombreViejo = alumno.getNombreUsuario();
                alumno.setNombreUsuario(nuevoNombre);
+               alumnoRepository.save(alumno);
                return "el nombre de usuario del alumno "+nombreViejo+" fue cambiado a "+alumno.getNombreUsuario();
             }return"el id "+ alumnoId+" no se a encontrado";     
         } catch (Exception e) {
@@ -99,6 +100,7 @@ public class AlumnoService {
             if(estado){
                AlumnoEntity alumno= alumnoRepository.findById(alumnoId);
                alumno.setTelefono(nuevoNumero);
+               alumnoRepository.save(alumno);
                return "el telefono del alumno "+alumno.getNombreUsuario()+" fue cambiado a "+alumno.getTelefono();
             }return"el id "+alumnoId+" no se a encontrado";     
         } catch (Exception e) {
@@ -113,6 +115,7 @@ public class AlumnoService {
             if(estado){
                AlumnoEntity alumno= alumnoRepository.findById(alumnoId);
                alumno.setEstadoCuenta(nuevoEstadoCuenta);
+               alumnoRepository.save(alumno);
                return "el estado de la cuenta del alumno "+alumno.getNombreUsuario()+" fue cambiado a "+alumno.getEstadoCuenta();
             }return"el id "+alumnoId+" no se a encontrado";     
         } catch (Exception e) {
