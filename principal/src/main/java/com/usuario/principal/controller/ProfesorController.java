@@ -42,7 +42,7 @@ public class ProfesorController {
         return ResponseEntity.notFound().build();       
     }
 
-    @GetMapping("/obtenerProfe/{id}")
+    @GetMapping("/obtenerProfe/{profeId}")
     public ResponseEntity<ProfesorDto> obtenerProfesor(@PathVariable int profeId) {
         if(profesorService.obtenerProfesor2(profeId) != null){
             return ResponseEntity.ok(profesorService.obtenerProfesor2(profeId));
