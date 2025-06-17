@@ -1,9 +1,9 @@
 package com.usuario.principal.service;
 
 import java.time.LocalDate;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+//import java.util.Collections;
+//import java.util.List;
+//import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import com.usuario.principal.model.Alumno;
 import com.usuario.principal.model.EstadoCuenta;
 import com.usuario.principal.model.Dto.AlumnoDto;
 import com.usuario.principal.model.entity.AlumnoEntity;
-import com.usuario.principal.model.entity.ProfesorEntity;
+//import com.usuario.principal.model.entity.ProfesorEntity;
 import com.usuario.principal.repository.AlumnoRepository;
 
 @Service
@@ -41,7 +41,7 @@ public class AlumnoService {
                 alumnoRepository.save(alumnoNuevo);
                 return"Alumno creado correctamente";
             }
-            return "el correo ya existe";           
+            return "Este correo ya existe";           
         } catch (Exception e) {
             e.printStackTrace();
             return "Error: Hubo un problema al crear el alumno " + e.getMessage();
@@ -86,8 +86,8 @@ public class AlumnoService {
                String nombreViejo = alumno.getNombreUsuario();
                alumno.setNombreUsuario(nuevoNombre);
                alumnoRepository.save(alumno);
-               return "el nombre de usuario del alumno "+nombreViejo+" fue cambiado a "+alumno.getNombreUsuario();
-            }return"el id "+ alumnoId+" no se a encontrado";     
+               return "El nombre de usuario del alumno "+nombreViejo+" fue cambiado a "+alumno.getNombreUsuario();
+            }return"NotFound: El id "+ alumnoId+" no se a encontrado";     
         } catch (Exception e) {
             e.printStackTrace();
             return "Error: Hubo un problema al cambiar el nombre del alumno " + e.getMessage();
@@ -101,8 +101,8 @@ public class AlumnoService {
                AlumnoEntity alumno= alumnoRepository.findById(alumnoId);
                alumno.setTelefono(nuevoNumero);
                alumnoRepository.save(alumno);
-               return "el telefono del alumno "+alumno.getNombreUsuario()+" fue cambiado a "+alumno.getTelefono();
-            }return"el id "+alumnoId+" no se a encontrado";     
+               return "El telefono del alumno "+alumno.getNombreUsuario()+" fue cambiado a "+alumno.getTelefono();
+            }return"NotFound: El id "+alumnoId+" no se a encontrado";     
         } catch (Exception e) {
             e.printStackTrace();
             return "Error: Hubo un problema al cambiar el telefono del alumno " + e.getMessage();

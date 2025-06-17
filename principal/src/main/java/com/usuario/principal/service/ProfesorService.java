@@ -41,7 +41,7 @@ public class ProfesorService {
                 profesorRepository.save(nuevoProfesor);
                 return "Profesor creado correctamente";
             }
-            return "este correo ya tiene un profesor";      
+            return "Este correo ya tiene un profesor";      
         } catch (Exception e) {
             e.printStackTrace();
             return "Error: Hubo un problema al crear el profesor " + e.getMessage();
@@ -116,8 +116,8 @@ public class ProfesorService {
                String nombreViejo = profe.getNombreUsuario();
                profe.setNombreUsuario(nuevoNombre);
                profesorRepository.save(profe);
-               return "el nombre de usuario del profesor "+nombreViejo+" fue cambiado a "+profe.getNombreUsuario();
-            }return"el id "+ profeId+" no se a encontrado";     
+               return "El nombre de usuario del profesor "+nombreViejo+" fue cambiado a "+profe.getNombreUsuario();
+            }return"NotFound: No se a encontrado "+"el id "+ profeId;     
         } catch (Exception e) {
             e.printStackTrace();
             return "Error: Hubo un problema al cambiar el nombre del profesor " + e.getMessage();
@@ -131,8 +131,8 @@ public class ProfesorService {
                ProfesorEntity profe= profesorRepository.findById(profeId);
                profe.setTelefono(nuevoNumero);
                profesorRepository.save(profe);
-               return "el telefono del profesor "+profe.getNombreUsuario()+" fue cambiado a "+profe.getTelefono();
-            }return"el id "+profeId+" no se a encontrado";     
+               return "El telefono del profesor "+profe.getNombreUsuario()+" fue cambiado a "+profe.getTelefono();
+            }return"NotFound: El id "+profeId+" no se a encontrado";     
         } catch (Exception e) {
             e.printStackTrace();
             return "Error: Hubo un problema al cambiar el telefono del profesor " + e.getMessage();

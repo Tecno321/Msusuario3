@@ -1,6 +1,8 @@
 package com.usuario.principal.controller;
 
-import java.util.List;
+import java.util.Map;
+
+//import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +29,9 @@ public class ProfesorController {
     @PostMapping("/crear")
     public ResponseEntity<String> crearProfesor(@RequestBody Profesor profesor) {
         String resultado = profesorService.crearProfesor(profesor);
+        if (resultado.startsWith("Este")) {
+            return ResponseEntity.status(409).body(resultado);
+        }
         if (resultado.startsWith("Error")) {
             return ResponseEntity.status(400).body(resultado);
         }
@@ -36,16 +41,18 @@ public class ProfesorController {
 
     @GetMapping("/{correo}")
     public ResponseEntity<ProfesorDto> obtenerProfesor(@PathVariable String correo) {
-        if(profesorService.obtenerProfesor(correo) != null){
-            return ResponseEntity.ok(profesorService.obtenerProfesor(correo));
+        ProfesorDto profe = profesorService.obtenerProfesor(correo);
+        if(profe != null){
+            return ResponseEntity.ok(profe);
         }
         return ResponseEntity.notFound().build();       
     }
 
     @GetMapping("/obtenerProfe/{profeId}")
     public ResponseEntity<ProfesorDto> obtenerProfesor(@PathVariable int profeId) {
-        if(profesorService.obtenerProfesor2(profeId) != null){
-            return ResponseEntity.ok(profesorService.obtenerProfesor2(profeId));
+        ProfesorDto profe = profesorService.obtenerProfesor2(profeId);
+        if(profe != null){
+            return ResponseEntity.ok(profe);
         }
         return ResponseEntity.notFound().build();       
     }
@@ -55,18 +62,26 @@ public class ProfesorController {
     //    return profesorService.obtenerMaterias(id);
     //}
 
-    @PutMapping("/cambiarNombre/{nombre}/{id}")
-    public ResponseEntity<String> cambiarNombre(@PathVariable String nombre ,@PathVariable int id){
-        String resultado = profesorService.cambiarNombreProfe(nombre, id);
+    @PutMapping("/cambiarNombre/{id}")
+    public ResponseEntity<String> cambiarNombre(@PathVariable int id ,@RequestBody Map<String ,String> datos){
+        String nombreNuevo = datos.get("nombre");
+        String resultado = profesorService.cambiarNombreProfe(nombreNuevo, id);
+        if (resultado.startsWith("NotFound")) {
+            return ResponseEntity.status(404).body(resultado);
+        }
         if (resultado.startsWith("Error")) {
             return ResponseEntity.status(400).body(resultado);
         }
         return ResponseEntity.ok(resultado);
     }
 
-    @PutMapping("/cambiarTelefono/{telefono}/{id}")
-    public ResponseEntity<String> cambiarTelefono(@PathVariable String telefono ,@PathVariable int id){
-        String resultado = profesorService.cambiarNumeroProfe(telefono, id);
+    @PutMapping("/cambiarTelefono/{id}")
+    public ResponseEntity<String> cambiarTelefono(@PathVariable int id ,@RequestBody Map<String ,String> datos){
+        String telefonoNuevo = datos.get("telefono");
+        String resultado = profesorService.cambiarNumeroProfe(telefonoNuevo, id);
+        if (resultado.startsWith("NotFound")) {
+            return ResponseEntity.status(404).body(resultado);
+        }
         if (resultado.startsWith("Error")) {
             return ResponseEntity.status(400).body(resultado);
         }

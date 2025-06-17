@@ -1,6 +1,8 @@
 package com.usuario.principal.controller;
 
-import java.util.List;
+import java.util.Map;
+
+//import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +29,9 @@ public class AlumnoController {
     @PostMapping("/crear")
     public ResponseEntity<String> crearAlumno(@RequestBody Alumno alumno) {
         String resultado = alumnoService.crearAlumno(alumno);
+        if (resultado.startsWith("Este")) {
+            return ResponseEntity.status(409).body(resultado);
+        }
         if (resultado.startsWith("Error")) {
             return ResponseEntity.status(400).body(resultado);
         }
@@ -46,18 +51,26 @@ public class AlumnoController {
     //    return alumnoService.obtenerMaterias(id);
     //}   
     
-    @PutMapping("/cambiarNombre/{nombre}/{id}")
-    public ResponseEntity<String> cambiarNombre(@PathVariable String nombre ,@PathVariable int id){
-        String resultado = alumnoService.cambiarNombreAlumno(nombre, id);
+    @PutMapping("/cambiarNombre/{id}")
+    public ResponseEntity<String> cambiarNombre(@PathVariable int id ,@RequestBody Map<String ,String> datos){
+        String nombreNuevo = datos.get("nombre");
+        String resultado = alumnoService.cambiarNombreAlumno(nombreNuevo, id);
+        if (resultado.startsWith("NotFound")) {
+            return ResponseEntity.status(404).body(resultado);
+        }
         if (resultado.startsWith("Error")) {
             return ResponseEntity.status(400).body(resultado);
         }
         return ResponseEntity.ok(resultado);
     }
 
-    @PutMapping("/cambiarTelefono/{telefono}/{id}")
-    public ResponseEntity<String> cambiarTelefono(@PathVariable String telefono ,@PathVariable int id){
-        String resultado = alumnoService.cambiarNumeroAlumno(telefono, id);
+    @PutMapping("/cambiarTelefono/{id}")
+    public ResponseEntity<String> cambiarTelefono(@PathVariable int id ,@RequestBody Map<String ,String> datos){
+        String telefonoNuevo = datos.get("telefono");
+        String resultado = alumnoService.cambiarNumeroAlumno(telefonoNuevo, id);
+        if (resultado.startsWith("NotFound")) {
+            return ResponseEntity.status(404).body(resultado);
+        }
         if (resultado.startsWith("Error")) {
             return ResponseEntity.status(400).body(resultado);
         }
