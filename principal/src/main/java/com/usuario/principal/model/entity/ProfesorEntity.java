@@ -20,6 +20,7 @@ import lombok.Data;
 
 @Entity
 @Data
+//crea la tabla de profesor en la base de datos
 public class ProfesorEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

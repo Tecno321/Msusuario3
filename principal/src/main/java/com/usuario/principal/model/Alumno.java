@@ -9,9 +9,11 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
+//clase alumno extiende de usuario
 public class Alumno extends Usuario {
     private List<Long> cursosInscritos;
 
+//constructor de alumno    
     public Alumno(int id, String nombreUsuario, String contraseña, String correo, 
                     String telefono, LocalDate fechaRegistro, 
                     EstadoCuenta estadoCuenta, List<Long> cursosInscritos){

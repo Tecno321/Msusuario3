@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Data
+//clase que muestra siertos atributos de profesor
 public class ProfesorDto {
     private String nombreUsuario;
     private String correo;

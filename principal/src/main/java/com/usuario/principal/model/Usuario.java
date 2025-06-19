@@ -5,9 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+//El to String llama a todos los atributos esto exclulle la contraseña
 @ToString(exclude = "contraseña")
 @Data
+//Crea el constructor sin parametros
 @NoArgsConstructor
+//Clase usuario
 public class Usuario {
     private int id ;
     private String nombreUsuario;
@@ -17,7 +20,7 @@ public class Usuario {
     private LocalDate fechaRegistro;
     private EstadoCuenta estadoCuenta;
     
-    
+//Constructor de la clase usuario    
     public Usuario(int id, String nombreUsuario, String contraseña, String correo,
             String telefono, LocalDate fechaRegistro, EstadoCuenta estadoCuenta) {
         this.id = id;

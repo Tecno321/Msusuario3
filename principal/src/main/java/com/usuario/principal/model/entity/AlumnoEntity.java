@@ -16,6 +16,7 @@ import lombok.Data;
 
 @Entity
 @Data
+//crea la tabla de alumno en la base de datos
 public class AlumnoEntity{
 
     @Id
