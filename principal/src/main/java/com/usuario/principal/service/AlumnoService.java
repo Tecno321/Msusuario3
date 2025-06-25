@@ -67,8 +67,29 @@ public class AlumnoService {
                 //el correo existe y se crea el DTO del alumno
                 AlumnoDto alum = new AlumnoDto(alumno.getNombreUsuario()
                 ,alumno.getCorreo(),
-                alumno.getEstadoCuenta(),alumno.getCursosInscritos());
+                alumno.getEstadoCuenta());
                 return alum;
+            }
+            return null;
+            
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public AlumnoDto obtenerAlumno2 (int alumnoId){
+        try {
+            AlumnoEntity alumno = alumnoRepository.findById(alumnoId);
+            EstadoCuenta estado = alumno.getEstadoCuenta();
+            if (alumno != null){
+                if(estado != EstadoCuenta.ACTIVO){
+                    System.out.println("el profesor esta fuera de servicio");
+                    return null;
+   
+                }AlumnoDto alumnoDto = new AlumnoDto(alumno.getNombreUsuario(),alumno.getCorreo()
+                ,alumno.getEstadoCuenta());
+                return alumnoDto; 
+
             }
             return null;
             

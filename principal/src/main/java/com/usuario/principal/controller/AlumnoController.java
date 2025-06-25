@@ -39,11 +39,20 @@ public class AlumnoController {
     }
 
     @GetMapping("/{correo}")
-    public ResponseEntity<AlumnoDto> obtenerProfesor(@PathVariable String correo) {
+    public ResponseEntity<AlumnoDto> obtenerAlumno(@PathVariable String correo) {
         if(alumnoService.obtenerAlumno(correo) != null){
             return ResponseEntity.ok(alumnoService.obtenerAlumno(correo));
         }
         return ResponseEntity.notFound().build();     
+    }
+
+    @GetMapping("/obtenerAlumno/{alumnoId}")
+    public ResponseEntity<AlumnoDto> obtenerProfesor(@PathVariable int profeId) {
+        AlumnoDto profe = alumnoService.obtenerAlumno2(profeId);
+        if(profe != null){
+            return ResponseEntity.ok(profe);
+        }
+        return ResponseEntity.notFound().build();       
     }
 
     //@GetMapping("/{id}/materias")
