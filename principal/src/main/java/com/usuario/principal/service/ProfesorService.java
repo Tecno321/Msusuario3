@@ -30,7 +30,6 @@ public class ProfesorService {
                 nuevoProfesor.setTelefono(profesor.getTelefono());
                 nuevoProfesor.setFechaRegistro(profesor.getFechaRegistro());
                 nuevoProfesor.setEstadoCuenta(profesor.getEstadoCuenta());
-                nuevoProfesor.setMaterias(profesor.getMateria());
                 nuevoProfesor.setAñosDeExperiencia(profesor.getAñosDeExperiencia());
                 if (nuevoProfesor.getFechaRegistro() == null) {
                     nuevoProfesor.setFechaRegistro(LocalDate.now());                    
@@ -117,7 +116,7 @@ public class ProfesorService {
                profe.setNombreUsuario(nuevoNombre);
                profesorRepository.save(profe);
                return "El nombre de usuario del profesor "+nombreViejo+" fue cambiado a "+profe.getNombreUsuario();
-            }return"NotFound: No se a encontrado "+"el id "+ profeId;     
+            }return"NotFound: No se a encontrado el id "+ profeId;     
         } catch (Exception e) {
             e.printStackTrace();
             return "Error: Hubo un problema al cambiar el nombre del profesor " + e.getMessage();
