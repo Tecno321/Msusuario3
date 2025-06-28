@@ -39,8 +39,6 @@ public class ProfesorTest {
 
     private ProfesorEntity profesorEntity;
 
-    private EstadoCuenta estadoCuenta;
-
     @BeforeEach
     public void setup(){
         MockitoAnnotations.openMocks(this);
@@ -51,7 +49,7 @@ public class ProfesorTest {
         profesor.setCorreo("pepeprueva@gmail.com");
         profesor.setTelefono("+453232323");
         profesor.setFechaRegistro(LocalDate.now());
-        profesor.setEstadoCuenta(estadoCuenta.ACTIVO);
+        profesor.setEstadoCuenta(EstadoCuenta.ACTIVO);
         profesor.setAñosDeExperiencia(2);
 
         profesorEntity = new ProfesorEntity();
@@ -61,7 +59,7 @@ public class ProfesorTest {
         profesorEntity.setTelefono("+453232323");
         profesorEntity.setFechaRegistro(LocalDate.now());
         profesorEntity.setAñosDeExperiencia(2);
-        profesorEntity.setEstadoCuenta(estadoCuenta.ACTIVO);
+        profesorEntity.setEstadoCuenta(EstadoCuenta.ACTIVO);
 
     }
 
@@ -69,7 +67,7 @@ public class ProfesorTest {
     public void testCrearProfeExitoso(){
         System.out.println("INICIANDO TEST testCrearProfeExitoso");
         when(profesorRepository.existsByCorreo(any())).thenReturn(false);
-        when(profesorRepository.save(any())).thenReturn(new ProfesorEntity());
+        when(profesorRepository.save(any())).thenReturn(profesorEntity);
 
         String resultado = profesorService.crearProfesor(profesor);
         
@@ -84,7 +82,8 @@ public class ProfesorTest {
         when(profesorRepository.existsByCorreo(any())).thenReturn(true);
 
         String resultado = profesorService.crearProfesor(profesor);
-
+        
+        System.out.println("Resultado exacto: [" + resultado + "]");
         assertNotNull(resultado);
         assertEquals("Este correo ya tiene un profesor", resultado);
     }
@@ -95,6 +94,8 @@ public class ProfesorTest {
 
         ProfesorDto resultado = profesorService.obtenerProfesor2(profesor.getId());
 
+        
+        System.out.println("Resultado exacto: [" + resultado + "]");
         assertNotNull(resultado);    
         assertEquals("pepePrueva", resultado.getNombreUsuario());
         assertEquals("pepeprueva@gmail.com", resultado.getCorreo());
@@ -110,6 +111,7 @@ public class ProfesorTest {
 
         ProfesorDto resultado = profesorService.obtenerProfesor2(profesor.getId());
 
+        System.out.println("Resultado exacto: [" + resultado + "]");
         assertNull(resultado);
 
     }
@@ -118,10 +120,11 @@ public class ProfesorTest {
     public void testLlamarProfesorInactivo(){
         when(profesorRepository.findById(profesor.getId())).thenReturn(profesorEntity);
 
-        profesorEntity.setEstadoCuenta(estadoCuenta.SUSPENDIDO);
+        profesorEntity.setEstadoCuenta(EstadoCuenta.SUSPENDIDO);
 
         ProfesorDto resultado = profesorService.obtenerProfesor2(profesor.getId());
 
+        System.out.println("Resultado exacto: [" + resultado + "]");
         assertNull(resultado);
 
     }
@@ -135,6 +138,7 @@ public class ProfesorTest {
         String nombreNuevo = "pepeNuevo";
         String resultado = profesorService.cambiarNombreProfe(nombreNuevo, profesor.getId());
 
+        System.out.println("Resultado exacto: [" + resultado + "]");
         assertNotNull(resultado);
         assertTrue(resultado.contains("pepePrueva"));
         assertTrue(resultado.contains("pepeNuevo"));
@@ -150,6 +154,7 @@ public class ProfesorTest {
         String nombreNuevo = "pepeNuevo";
         String resultado = profesorService.cambiarNombreProfe(nombreNuevo, profesor.getId());
 
+        System.out.println("Resultado exacto: [" + resultado + "]");
         assertNotNull(resultado);
         assertEquals("NotFound: No se a encontrado el id "+ profesor.getId(), resultado);
 
@@ -163,6 +168,7 @@ public class ProfesorTest {
         String nombreNuevo = "pepeNuevo";
         String resultado = profesorService.cambiarNombreProfe(nombreNuevo, profesor.getId());
 
+        System.out.println("Resultado exacto: [" + resultado + "]");
         assertNotNull(resultado);
         assertTrue(resultado.contains("Error: Hubo un problema al cambiar el nombre del profesor "));
         assertTrue(resultado.contains("Error al cambiar el nombre al profesor"));
@@ -180,6 +186,7 @@ public class ProfesorTest {
         String numeroNuevo = "+504545454";
         String resultado = profesorService.cambiarNumeroProfe(numeroNuevo, profesor.getId());
 
+        System.out.println("Resultado exacto: [" + resultado + "]");
         assertNotNull(resultado);
         assertTrue(resultado.contains("504545454"));
         assertEquals("El telefono del profesor "+nombreProfe+" fue cambiado a "+numeroNuevo, resultado);
@@ -195,8 +202,8 @@ public class ProfesorTest {
         String numeroNuevo = "+504545454";
         String resultado = profesorService.cambiarNumeroProfe(numeroNuevo, profesor.getId());
 
+        System.out.println("Resultado exacto: [" + resultado + "]");
         assertNotNull(resultado);
-        assertTrue(resultado.contains("504545454"));
         assertEquals("NotFound: El id "+profesor.getId()+" no se a encontrado", resultado);
 
     }
@@ -210,6 +217,7 @@ public class ProfesorTest {
         String numeroNuevo = "+504545454";
         String resultado = profesorService.cambiarNumeroProfe(numeroNuevo, profesor.getId());
 
+        System.out.println("Resultado exacto: [" + resultado + "]");
         assertNotNull(resultado);
         assertTrue(resultado.contains("Error: Hubo un problema al cambiar el telefono del profesor "));
         assertTrue(resultado.contains("Error al cambiar el numero del profesor"));

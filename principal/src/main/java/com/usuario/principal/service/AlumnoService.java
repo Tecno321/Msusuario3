@@ -36,7 +36,6 @@ public class AlumnoService {
                 alumnoNuevo.setTelefono(alumno.getTelefono());
                 alumnoNuevo.setFechaRegistro(alumno.getFechaRegistro());
                 alumnoNuevo.setEstadoCuenta(alumno.getEstadoCuenta());
-                alumnoNuevo.setCursosInscritos(alumno.getCursosInscritos());
                 //si la fecha de registro es nula o invalida coloca la actual
                 if (alumnoNuevo.getFechaRegistro() == null) {
                     alumnoNuevo.setFechaRegistro(LocalDate.now());
